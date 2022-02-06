@@ -1,0 +1,13 @@
+
+<div class="card">
+  <div class="card-header">
+    Mentions
+  </div>
+  <div class="card-body">
+    <ul>
+      <% 10.times do %>
+      <li><%=Faker::Twitter.user[:name]%></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

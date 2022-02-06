@@ -10,31 +10,32 @@ class TwitterRequest
     end
   end
 
-  def self.following_me(search_params = 'Rodrigo35627393')
+  def self.following_me(search_params)
     followers = self.client.followers(search_params)
     followers.attrs[:users]
   end
 
-  def self.timeline(search_params = 'Rodrigo35627393')
+  def self.timeline(search_params)
 
     user_timeline = self.client.user_timeline(search_params)
-
     user_timeline.pluck(:text)
   end
 
-  def self.user(user_name)
-    user = self.client.user(user_name)
+  def self.user(search_params)
+    user = self.client.user(search_params)
+
     {
-      user: user_name,
-      following: 4.times.map {|t| {user: Faker::Twitter.user}},
-      is_following: 4.times.map {|t| {user: Faker::Twitter.user}},
+      user: user.name,
+      location: user.location,
+      favorites_count: user.favorites_count,
+      followers_count: user.followers_count,
+      friends_count: user.friends_count
     }
   end
 
   def self.mentions
-    4.times.map do
-      Faker::Lorem.paragraph
-    end
+    mentions_timeline = self.client.mentions_timeline
+    mentions_timeline.pluck(:text)
   end
 
   def self.recent_searchs

@@ -3,18 +3,39 @@
   <div class="col">
     <div class="card">
       <div class="card-header">
-        <%=@user[:name]%>
+        
       </div>
       <div class="card-body">
-        <ul>
-          <% 4.times do %>
-          <li><%=link_to Faker::Twitter.user[:name], root_path(user_name: Faker::Twitter.user[:name]) %></li>
+        <ul class="list-group">
+          <% TwitterRequest.following_me(params[:user_name]).each do |user| %>
+          <li class="list-group-item"><%=link_to user[:name], root_path(user_name: user[:screen_name]) %></li>
           <% end %>
         </ul>
-        <a href="<%=following_path%>" class="btn btn-primary">Go to following</a>
-        mapa do usuario
-        n mencoes
-        n diversos
+        <hr>
+        <%=@user[:location]%>
+        <button type="button" class="btn btn-primary position-relative">
+          Favorites
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <%=@user[:favorites_count]%>
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </button>
+
+        <button type="button" class="btn btn-primary position-relative">
+          Followers
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <%=@user[:followers_count]%>
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </button>
+
+        <button type="button" class="btn btn-primary position-relative">
+          Friends count
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <%=@user[:friends_count]%>
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </button>
       </div>
     </div>
   </div>
@@ -25,12 +46,12 @@
   <div class="col">
     <div class="card">
       <div class="card-header">
-        Who is following me
+        Who is following <%=params[:user_name]%>
       </div>
       <div class="card-body">
-        <ul>
-          <% TwitterRequest.following_me(params[:user_name] || 'Rodrigo35627393').each do |user| %>
-          <li><%=link_to user[:name], root_path(user_name: user[:screen_name]) %></li>
+        <ul class="list-group">
+          <% TwitterRequest.following_me(params[:user_name]).each do |user| %>
+          <li class="list-group-item"><%=link_to user[:name], root_path(user_name: user[:screen_name]) %></li>
           <% end %>
         </ul>
       </div>
@@ -42,9 +63,9 @@
         Timeline
       </div>
       <div class="card-body">
-        <ul>
-          <% TwitterRequest.timeline(params[:user_name] || 'Rodrigo35627393').each do |text| %>
-          <li><%= text %></li>
+        <ul class="list-group">
+          <% TwitterRequest.timeline(params[:user_name]).each do |text| %>
+          <li class="list-group-item"><%= text %></li>
           <% end %>
         </ul>
       </div>
@@ -57,12 +78,13 @@
     Last mentions
   </div>
   <div class="card-body">
-    <ul>
-      <% 4.times do %>
-      <li><%=Faker::Lorem.paragraph%></li>
-      <% end %>
+    <ul class="list-group">
+      <ul class="list-group">
+        <% TwitterRequest.mentions.each do |text| %>
+        <li class="list-group-item"><%= text %></li>
+        <% end %>
+      </ul>
     </ul>
-    <a href="<%=mentions_path%>" class="btn btn-primary">Go to mentions</a>
   </div>
 </div>
 <hr>
@@ -71,9 +93,9 @@
     Recent searchs
   </div>
   <div class="card-body">
-    <ul>
+    <ul class="list-group">
       <% 4.times do %>
-      <li><%=Faker::Lorem.paragraph%></li>
+      <li class="list-group-item"><%=Faker::Lorem.paragraph%></li>
       <% end %>
     </ul>
     <a href="<%=recent_searchs_path%>" class="btn btn-primary">Go to searchs</a>

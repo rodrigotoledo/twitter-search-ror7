@@ -71,5 +71,4 @@ end
 
 gem "bootstrap-form", "~> 4.0"
 gem "twitter", "~> 7.0"
-gem 'figaro'
 gem "faker", "~> 2.19"

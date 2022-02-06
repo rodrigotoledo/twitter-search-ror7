@@ -16,6 +16,7 @@
       <%= render 'layouts/navbar' %>
       <hr>
       <%= yield %>
+      <% console if Rails.env.development? %>
     </main>
   </body>
 </html>

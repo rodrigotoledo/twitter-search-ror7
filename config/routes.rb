@@ -4,5 +4,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  get 'dashboard/follwoing'
+  get 'following/index', as: :following
+  get 'followers/index', as: :followers
+  get 'mentions/index', as: :mentions
+  get 'recent_searchs/index', as: :recent_searchs
 end

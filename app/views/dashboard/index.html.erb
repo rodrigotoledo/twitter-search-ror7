@@ -1,4 +1,3 @@
-<hr>
 <div class="row">
   <div class="col">
     <div class="card">
@@ -11,7 +10,7 @@
           <li><%=Faker::Twitter.user[:name]%></li>
           <% end %>
         </ul>
-        <a href="#" class="btn btn-primary">Go to follwoing</a>
+        <a href="<%=following_path%>" class="btn btn-primary">Go to followres</a>
       </div>
     </div>
   </div>
@@ -26,7 +25,7 @@
           <li><%=Faker::Twitter.user[:name]%></li>
           <% end %>
         </ul>
-        <a href="#" class="btn btn-primary">Go to followres</a>
+        <a href="<%=followers_path%>" class="btn btn-primary">Go to followres</a>
       </div>
     </div>
   </div>
@@ -42,13 +41,13 @@
       <li><%=Faker::Lorem.paragraph%></li>
       <% end %>
     </ul>
-    <a href="#" class="btn btn-primary">Go to mentions</a>
+    <a href="<%=mentions_path%>" class="btn btn-primary">Go to mentions</a>
   </div>
 </div>
 <hr>
 <div class="card">
   <div class="card-header">
-    Last searchs
+    Recent searchs
   </div>
   <div class="card-body">
     <ul>
@@ -56,6 +55,6 @@
       <li><%=Faker::Lorem.paragraph%></li>
       <% end %>
     </ul>
-    <a href="#" class="btn btn-primary">Go to searchs</a>
+    <a href="<%=recent_searchs_path%>" class="btn btn-primary">Go to searchs</a>
   </div>
 </div>

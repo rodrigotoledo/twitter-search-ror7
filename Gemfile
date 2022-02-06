@@ -72,4 +72,3 @@ end
 
 gem "bootstrap-form", "~> 4.0"
 gem "twitter", "~> 7.0"
-gem "stimulus_reflex", "3.5.0.pre8"

@@ -53,6 +53,7 @@ group :development, :test do
   gem "faker", "~> 2.19"
   # Use sqlite3 as the database for Active Record
   gem "sqlite3", "~> 1.4"
+  gem 'pry'
 end
 
 group :development do
@@ -72,3 +73,4 @@ end
 
 gem "bootstrap-form", "~> 4.0"
 gem "twitter", "~> 7.0"
+gem 'figaro'

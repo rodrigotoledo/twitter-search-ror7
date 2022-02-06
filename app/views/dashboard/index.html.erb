@@ -1,31 +1,52 @@
+<% if @user %>
 <div class="row">
   <div class="col">
     <div class="card">
       <div class="card-header">
-        Who is follwoing me
+        <%=@user[:name]%>
       </div>
       <div class="card-body">
         <ul>
           <% 4.times do %>
-          <li><%=Faker::Twitter.user[:name]%></li>
+          <li><%=link_to Faker::Twitter.user[:name], root_path(user_name: Faker::Twitter.user[:name]) %></li>
           <% end %>
         </ul>
-        <a href="<%=following_path%>" class="btn btn-primary">Go to followres</a>
+        <a href="<%=following_path%>" class="btn btn-primary">Go to following</a>
+        mapa do usuario
+        n mencoes
+        n diversos
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<% end %>
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        Who is following me
+      </div>
+      <div class="card-body">
+        <ul>
+          <% TwitterRequest.following_me(params[:user_name] || 'Rodrigo35627393').each do |user| %>
+          <li><%=link_to user[:name], root_path(user_name: user[:screen_name]) %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>
   <div class="col">
     <div class="card">
       <div class="card-header">
-        Who I follow
+        Timeline
       </div>
       <div class="card-body">
         <ul>
-          <% 4.times do %>
-          <li><%=Faker::Twitter.user[:name]%></li>
+          <% TwitterRequest.timeline(params[:user_name] || 'Rodrigo35627393').each do |text| %>
+          <li><%= text %></li>
           <% end %>
         </ul>
-        <a href="<%=followers_path%>" class="btn btn-primary">Go to followres</a>
       </div>
     </div>
   </div>

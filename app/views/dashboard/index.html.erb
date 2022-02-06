@@ -1,0 +1,61 @@
+<hr>
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        Who is follwoing me
+      </div>
+      <div class="card-body">
+        <ul>
+          <% 4.times do %>
+          <li><%=Faker::Twitter.user[:name]%></li>
+          <% end %>
+        </ul>
+        <a href="#" class="btn btn-primary">Go to follwoing</a>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        Who I follow
+      </div>
+      <div class="card-body">
+        <ul>
+          <% 4.times do %>
+          <li><%=Faker::Twitter.user[:name]%></li>
+          <% end %>
+        </ul>
+        <a href="#" class="btn btn-primary">Go to followres</a>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="card">
+  <div class="card-header">
+    Last mentions
+  </div>
+  <div class="card-body">
+    <ul>
+      <% 4.times do %>
+      <li><%=Faker::Lorem.paragraph%></li>
+      <% end %>
+    </ul>
+    <a href="#" class="btn btn-primary">Go to mentions</a>
+  </div>
+</div>
+<hr>
+<div class="card">
+  <div class="card-header">
+    Last searchs
+  </div>
+  <div class="card-body">
+    <ul>
+      <% 4.times do %>
+      <li><%=Faker::Lorem.paragraph%></li>
+      <% end %>
+    </ul>
+    <a href="#" class="btn btn-primary">Go to searchs</a>
+  </div>
+</div>
